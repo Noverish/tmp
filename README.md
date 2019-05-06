@@ -194,3 +194,26 @@ $ sudo /usr/share/kibana/bin/kibana
 #### Dashboard
 - Visualize 탭에서 상단 메뉴 바의 save를 누른다.
 - Dashboard 탭에서 상단 메뉴 바에서 Add 버튼을 눌러서 저장해 놓은 차트들을 불러온다.
+
+# Logstash
+
+Install
+```
+1. Download DEB file from https://www.elastic.co/downloads/logstash
+2. sudo dpkg -i logstash-5.0.2.deb
+```
+
+Edit config.conf
+```
+input {
+  stdin{ }
+}
+output {
+  stdout{ }
+}
+```
+
+Run
+```shell
+sudo ./logstash -f config.conf
+```
