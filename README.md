@@ -7,7 +7,7 @@
 ELK 스택의 OS 호환성 여부 표
 [https://www.elastic.co/support/matrix](https://www.elastic.co/support/matrix)
 
-
+Install java
 ```shell
 $ sudo add-apt-repository -y ppa:webupd8team/java
 $ sudo apt-get update
@@ -15,6 +15,7 @@ $ sudo apt-get -y install oracle-java8-installer
 $ java -version
 ```
 
+Install
 ```
 1. Download DEB file from https://www.elastic.co/downloads/elasticsearch
 2. dpkg -i elasticsearch-5.1.1.deb
@@ -26,6 +27,7 @@ $ java -version
    when server starts and stop
 ```
 
+Start & Stop elastic search
 ```
 1. sudo service elasticsearch start
 2. sudo service elasticsearch stop
@@ -151,3 +153,44 @@ Aggs (stats group by team)
 ```shell
 $ curl -XGET localhost:9200/_search --data-binary @stats_by_team.json
 ```
+
+# Kibana
+
+Install
+```
+1. Download DEB file from https://www.elastic.co/downloads/kibana
+2. sudo dpkg -i kibana-5.0.2-amd64.deb
+```
+
+Config kibana (/etc/kibana/kibana.yml)
+```
+1. elasticsearch.url: YOUR_ELASTICSEARCH_URL (http://localhost:9200)
+2. server.host: the address to which the kibana server will bind (localhost)
+```
+
+Start Kibana (/usr/share/kibana/bin/kibana)
+```
+$ sudo /usr/share/kibana/bin/kibana
+```
+
+#### Management    
+- `Management - Index Patterns - Index name or pattern`을 본인의 index 이름으로 바꿔준다.
+
+#### Discover
+- 처음에는 No results found 라고 뜬다. 우측 상단의 Last 15 minutes를 눌러서 쿼리 대상 시간을 길게 잡아주면 된다.
+- 시간 지정 옵션 : quick, relative, absolute
+- 바 그래프 밑의 record 들에서 왼쪽 삼각형을 누르면 자세히 보기가 뜬다.
+- 자세히 보기 일때 보기 옵션 : table, json
+- table일 때 돋보기에 더하기 기호 있는 거 누르면 그 값만 있는 record를 볼 수 있다.
+- 쿼리에서 휴지통 버튼 누르면 그 쿼리가 사라진다.
+- 원하는 column만 보고 싶으면 record에 창문 처럼 생긴거 누르면 토글이 된다.
+- 각 colum의 제목을 누르면 sort가 된다.
+
+#### Visualize
+- Vertical Bar Chart 클릭, 원하는 인덱스 클릭
+- axis, aggregation, field, custom label, select metrics type 등을 설정하여 그래프 생성
+- Pie chart, tile map도 비슷하게
+
+#### Dashboard
+- Visualize 탭에서 상단 메뉴 바의 save를 누른다.
+- Dashboard 탭에서 상단 메뉴 바에서 Add 버튼을 눌러서 저장해 놓은 차트들을 불러온다.
