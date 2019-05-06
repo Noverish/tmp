@@ -244,3 +244,37 @@ $ sudo service elasticsearch restart
 $ sudo initctl restart logstash
 $ sudo service filebeat restart
 ```
+
+# Curator
+
+Install
+```
+$ pip install elasticsearch-curator
+```
+
+Configuration
+```
+1. create curator.yml
+2. https://github.com/minsub-heo/BigData/blob/master/ch07/curator.yml
+```
+
+#### Time base delete
+
+https://github.com/minsuk-heo/BigData/blob/master/ch07/delete_indices_time_base.yml
+https://github.com/minsuk-heo/BigData/blob/master/ch07/delete_indices_time_base.sh
+30일 보다 더 오래된 파일을 삭제함
+
+#### Size base delete
+
+https://github.com/minsuk-heo/BigData/blob/master/ch07/delete_indices_size_base.yml
+https://github.com/minsuk-heo/BigData/blob/master/ch07/delete_indices_size_base.sh
+300GB 보다 커지면 삭제함
+1:, 2: 이거는 여러 인덱스를 지원하려고 함
+
+#### Crontab
+
+```
+$ sudo su
+$ cd /etc/cron.d
+$ vi curator_cron # https://github.com/minsuk-heo/BigData/blob/master/ch07/curator_cron
+```
