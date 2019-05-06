@@ -217,3 +217,30 @@ Run
 ```shell
 sudo ./logstash -f config.conf
 ```
+
+# File Beat
+
+Install
+```
+https://www.elastic.co/guide/en/beats/filebeat/current/filebeat-installation.html
+```
+
+Configuration Filebeat
+```
+1. Update /etc/filebeat/filebeat.yml
+2. https://github.com/minsuk-heo/BigData/blob/master/ch07/filebeat.yml
+```
+
+Configuration Logstash
+```
+1. Create /etc/logstash/conf.d/logstash.conf
+2. https://github.com/minsuk-heo/BigData/blob/master/ch07/logstash.conf
+```
+
+Check services started
+```
+$ sudo service kibana restart
+$ sudo service elasticsearch restart
+$ sudo initctl restart logstash
+$ sudo service filebeat restart
+```
